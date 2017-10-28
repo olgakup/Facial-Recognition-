@@ -25,15 +25,14 @@ public class DetectFController {
 	
 	//Variables:
 	private Mat personimage;
-	private Mat grayFrame;
 	private CascadeClassifier detector;
 	MatOfRect faceDetections;
 	
 	//Constructor:
 	protected DetectFController() {
 		this.detector = new CascadeClassifier(DetectFController.class.getResource("haarcascade_frontalface_alt.xml").getPath());
+		String a = getClass().getResource("/input.jpg").getPath();
         this.personimage = Imgcodecs.imread(getClass().getResource("/input.jpg").getPath());
-		this.grayFrame = new Mat();
 		this.faceDetections = new MatOfRect();
 	}
 	
@@ -60,7 +59,7 @@ public class DetectFController {
 	        // Save:
 	        System.out.println(String.format("\nSaving"));
 	        Imgcodecs.imwrite("output.png", personimage);
-	        //Croped image for further processing 
+	        //Cropped image for further processing 
 	        Mat markedImage = new Mat(this.personimage,rectCrop);
 	        Imgcodecs.imwrite("cropedimage.jpg",markedImage );
 	    }

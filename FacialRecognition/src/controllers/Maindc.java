@@ -10,6 +10,8 @@ public class Maindc {
  		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		DetectFController detectFace = new DetectFController();
  		detectFace.detect();
+ 		FourierTController transform = new FourierTController();
+ 		transform.dft();
 	}
 
 }

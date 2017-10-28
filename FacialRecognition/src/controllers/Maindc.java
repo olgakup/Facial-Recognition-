@@ -6,7 +6,7 @@ public class Maindc {
 
 	public static void main(String[] args) {
  		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		DetectController detectFace = new DetectController();
+		DetectFController detectFace = new DetectFController();
  		detectFace.detect();
 	}
 

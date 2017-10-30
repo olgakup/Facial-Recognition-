@@ -12,6 +12,7 @@ public class Maindc {
  		detectFace.detect();
  		FourierTController transform = new FourierTController();
  		transform.dft();
+ 		transform.inverse();
 	}
 
 }

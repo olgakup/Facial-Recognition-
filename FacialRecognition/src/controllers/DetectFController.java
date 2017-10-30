@@ -28,8 +28,7 @@ public class DetectFController {
 	//Constructor:
 	protected DetectFController() {
 		this.detector = new CascadeClassifier(DetectFController.class.getResource("haarcascade_frontalface_alt.xml").getPath());
-		String a = getClass().getResource("/input.jpg").getPath();
-        this.personimage = Imgcodecs.imread(getClass().getResource("/input.jpg").getPath());
+		this.personimage = Imgcodecs.imread(getClass().getResource("/input.jpg").getPath());
 		this.faceDetections = new MatOfRect();
 	}
 	
@@ -58,6 +57,8 @@ public class DetectFController {
 	        Imgcodecs.imwrite("output.png", personimage);
 	        //Cropped image for further processing 
 	        Mat markedImage = new Mat(this.personimage,rectCrop);
+	        
+	      
 	        Imgcodecs.imwrite("cropedimage.jpg",markedImage );
 	    }
 	
@@ -66,7 +67,8 @@ public class DetectFController {
 		
 		try {
 		    // retrieve image
-		    File newf = new File(getClass().getResource("/input.jpg").getPath());
+			String path = getClass().getResource("/input.jpg").getPath();
+		    File newf = new File(path);
 		    BufferedImage newImage = ImageIO.read(newf);
 		    int w = newImage.getWidth();
 		    int h = newImage.getHeight();

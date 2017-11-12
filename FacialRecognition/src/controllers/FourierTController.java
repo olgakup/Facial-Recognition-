@@ -96,6 +96,7 @@ public class FourierTController {
 			return imageHelper;
 		}
 
+
 		public void setImageHelper(Mat imageHelper) {
 			this.imageHelper = imageHelper;
 		}

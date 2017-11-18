@@ -28,7 +28,7 @@ public class DetectFController {
 	//Constructor:
 	protected DetectFController() {
 		this.detector = new CascadeClassifier(DetectFController.class.getResource("haarcascade_frontalface_alt.xml").getPath());
-		this.personimage = Imgcodecs.imread(getClass().getResource("/input.jpg").getPath());
+		this.personimage = Imgcodecs.imread(getClass().getResource("i000qa-fn.jpg").getPath());
 		this.faceDetections = new MatOfRect();
 	}
 	

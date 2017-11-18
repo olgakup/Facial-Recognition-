@@ -7,6 +7,7 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
+import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 
 //import it.polito.elite.teaching.cv.utils.Utils;
@@ -46,7 +47,7 @@ public class FourierTController {
 			Core.copyMakeBorder(getImageHelper(), optImage, 0, addPixelRows - getImageHelper().rows(), 0, addPixelCols - getImageHelper().cols(), Core.BORDER_CONSTANT, Scalar.all(0));
 			optImage.convertTo(optImage, CvType.CV_32F );
 			
-			//Get float values for matrix:
+			//Get float values:
 			System.out.println("Getting floaf values.");
 			getMatrix().add(optImage);
 			getMatrix().add(Mat.zeros(optImage.size(), CvType.CV_32F));
@@ -58,9 +59,29 @@ public class FourierTController {
 			Core.split(this.floats, newMatrix);
 			Core.magnitude(newMatrix.get(0), newMatrix.get(1), transformedImage);
 			
-			//Transform to logarithmic scale (grey scale) (* try to delete for final submition) 
+			//Transform to logarithmic scale to reduce dynamic range of the Fourier coefficients
 			Core.add(Mat.ones(transformedImage.size(), CvType.CV_32F), transformedImage, transformedImage);
 			Core.log(transformedImage, transformedImage);
+
+			//Make the origin to correspond with the center:
+
+			this.imageHelper = getImageHelper().submat(new Rect(0, 0, getImageHelper().cols() & -2, getImageHelper().rows() & -2));
+			int cx = getImageHelper().cols() / 2;
+			int cy = getImageHelper().rows() / 2;
+
+			Mat q0 = new Mat(getImageHelper(), new Rect(0, 0, cx, cy));
+			Mat q1 = new Mat(getImageHelper(), new Rect(cx, 0, cx, cy));
+			Mat q2 = new Mat(getImageHelper(), new Rect(0, cy, cx, cy));
+			Mat q3 = new Mat(getImageHelper(), new Rect(cx, cy, cx, cy));
+
+			Mat tmp = new Mat();
+			q0.copyTo(tmp);
+			q3.copyTo(q0);
+			tmp.copyTo(q3);
+
+			q1.copyTo(tmp);
+			q2.copyTo(q1);
+			tmp.copyTo(q2);
 			
 			Core.normalize(transformedImage, transformedImage, 0, 255, Core.NORM_MINMAX);
 			

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class RandomFController {
 	
 	//Variables:
-	
+	/*
 	private File trainmodel;
 	private LBPParameters newP;
 	private LBPModel model;

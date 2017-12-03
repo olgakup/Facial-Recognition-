@@ -4,7 +4,9 @@
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
 	<lib name="opencv-331.jar" scope="COMPILE">
-		<srcroot url="jar:///usr/local/Cellar/opencv/3.3.1/share/OpenCV/java/opencv-331.jar!/"/>
+		<srcroot url="jar://$MODULE_DIR$/libs/opencv-331.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/FacialRecognition/libs/opencv-331.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/FacialRecognition/libs/opencv-331.jar!/"/>
 	</lib>
 	<levels>
 		<level name="java" value="project"/>

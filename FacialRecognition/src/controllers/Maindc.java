@@ -13,6 +13,8 @@ public class Maindc {
  		FourierTController transform = new FourierTController();
  		transform.dft();
  		transform.inverse();
+		RandomFController newRF = new RandomFController();
+		newRF.startRF();
 	}
 
 }

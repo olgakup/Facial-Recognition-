@@ -103,13 +103,13 @@ public class FourierTController {
 			
 			System.out.println("Starting inverse process: ");
 			Core.idft(getFloats(), this.floats);
-			//Create HF mask
+			/*//Create HF mask
 			Mat mask = getTransformed();
 
 					//new Mat(getTransformed().44rows(), getTransformed().cols(), CvType.CV_32F);
 
 			Mat transformed  = getTransformed().setTo(new Scalar(0.0), mask);
-			//mask(cy-30:cy+30, cx-30:cx+30] = 1;
+			//mask(cy-30:cy+30, cx-30:cx+30] = 1; */
 
 			System.out.println("Extracting the real values from the complex, normalizing the result,");
 			Core.split(getFloats(), getMatrix());

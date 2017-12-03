@@ -27,8 +27,8 @@ public class DetectFController {
 	
 	//Constructor:
 	protected DetectFController() {
+
 		this.detector = new CascadeClassifier(DetectFController.class.getResource("haarcascade_frontalface_alt.xml").getPath());
-		this.personimage = Imgcodecs.imread(getClass().getResource("i000qa-fn.jpg").getPath());
 		this.faceDetections = new MatOfRect();
 	}
 	
@@ -40,6 +40,7 @@ public class DetectFController {
 		 	
 		 
 		 	greyscale();
+			this.personimage = Imgcodecs.imread("FacialRecognition/pictures/processed/bwoutput.jpg");
 	        // Detect faces in the image.
 	        this.detector.detectMultiScale(this.personimage, this.faceDetections);
 	        System.out.println("\nProgram has detected " + faceDetections.toArray().length + " face/faces");
@@ -54,12 +55,12 @@ public class DetectFController {
 
 	        // Save:
 	        System.out.println(String.format("\nSaving"));
-	        Imgcodecs.imwrite("output.png", personimage);
+	        Imgcodecs.imwrite("FacialRecognition/pictures/processed/output.png", personimage);
 	        //Cropped image for further processing 
 	        Mat markedImage = new Mat(this.personimage,rectCrop);
 	        
 	      
-	        Imgcodecs.imwrite("cropedimage.jpg",markedImage );
+	        Imgcodecs.imwrite("FacialRecognition/pictures/processed/detectedfaceimage.jpg",markedImage );
 	    }
 	
 	//Method to change image to grey scale image
@@ -67,7 +68,7 @@ public class DetectFController {
 		
 		try {
 		    // retrieve image
-			String path = getClass().getResource("/input.jpg").getPath();
+			String path = "FacialRecognition/pictures/jpg/i000qa-fn.jpg";
 		    File newf = new File(path);
 		    BufferedImage newImage = ImageIO.read(newf);
 		    int w = newImage.getWidth();
@@ -96,7 +97,9 @@ public class DetectFController {
 		    
 		    //Save Image:
 		    try {
-		    	ImageIO.write(newImage, "JPEG", newf);
+				String newPath = "FacialRecognition/pictures/processed/bwoutput.jpg";
+				File newFile = new File(newPath);
+		    	ImageIO.write(newImage, "JPEG", newFile);
 		    } catch (IOException e) {
 			    System.out.println("Cant save an image");
 			}

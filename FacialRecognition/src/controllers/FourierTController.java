@@ -21,13 +21,14 @@ public class FourierTController {
 		private Mat imageHelper;
 		private List<Mat> matrix;
 		private Mat floats;
-		
+		private Mat transformed;
 		
 		//Constructor:
 		protected FourierTController(){
-			this.imageHelper = Imgcodecs.imread(getClass().getResource("/cropedimage.jpg").getPath(),  Imgcodecs.CV_LOAD_IMAGE_GRAYSCALE);
+			this.imageHelper = Imgcodecs.imread("FacialRecognition/pictures/processed/detectedfaceimage.jpg",  Imgcodecs.CV_LOAD_IMAGE_GRAYSCALE);
 			this.matrix = new ArrayList<>();
 			this.floats = new Mat();
+			this.transformed = new Mat();
 		}
 		
 		//Methods:
@@ -87,18 +88,29 @@ public class FourierTController {
 			
 			//Save transformed image
 			System.out.println("Saving Transformed Image as fouriertransformed");
-			Imgcodecs.imwrite("fouriertransformed.jpg",transformedImage );
-			
+			Imgcodecs.imwrite("FacialRecognition/pictures/processed/fouriertransformed.jpg",transformedImage );
+			setTransformed(transformedImage);
 		}
 		//Method to create an inverse image
 		protected void inverse()
 		{
 			//Variables:
 			Mat newImage = new Mat();
+
+			//Get center for the mask:
+			int cy = getTransformed().cols() / 2;
+			int cx = getTransformed().rows() / 2;
 			
 			System.out.println("Starting inverse process: ");
 			Core.idft(getFloats(), this.floats);
-			
+			//Create HF mask
+			Mat mask = getTransformed();
+
+					//new Mat(getTransformed().44rows(), getTransformed().cols(), CvType.CV_32F);
+
+			Mat transformed  = getTransformed().setTo(new Scalar(0.0), mask);
+			//mask(cy-30:cy+30, cx-30:cx+30] = 1;
+
 			System.out.println("Extracting the real values from the complex, normalizing the result,");
 			Core.split(getFloats(), getMatrix());
 			Core.normalize(getMatrix().get(0), newImage, 0, 255, Core.NORM_MINMAX);
@@ -106,7 +118,7 @@ public class FourierTController {
 			
 			//Save inverse image
 			System.out.println("Saving inversed Image as inverse.jpg");
-			Imgcodecs.imwrite("inverse.jpg", newImage );
+			Imgcodecs.imwrite("FacialRecognition/pictures/processed/inverse.jpg", newImage );
 			
 		}
 
@@ -137,6 +149,14 @@ public class FourierTController {
 		public void setFloats(Mat floats) {
 			this.floats = floats;
 		}
+
+	public Mat getTransformed() {
+		return transformed;
+	}
+
+	public void setTransformed(Mat transformed) {
+		this.transformed = transformed;
+	}
 
 		
 

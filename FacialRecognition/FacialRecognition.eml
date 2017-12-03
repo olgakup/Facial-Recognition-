@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/../out/test/FacialRecognition"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="opencv-331.jar" scope="COMPILE">
+		<srcroot url="jar:///usr/local/Cellar/opencv/3.3.1/share/OpenCV/java/opencv-331.jar!/"/>
+	</lib>
+	<levels>
+		<level name="java" value="project"/>
+	</levels>
+</component>

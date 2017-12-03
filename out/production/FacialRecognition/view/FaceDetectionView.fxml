@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.CheckBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="it.polito.teaching.cv.FaceDetectionController">
+   <center>
+      <SplitPane dividerPositions="0.7738693467336684" orientation="VERTICAL" prefHeight="400.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <ImageView fitHeight="288.0" fitWidth="285.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="uploadB" layoutX="54.0" layoutY="30.0" mnemonicParsing="false" onAction="#uploadM" text="Upload" />
+                  <Button fx:id="detectB" layoutX="166.0" layoutY="30.0" mnemonicParsing="false" onAction="#detectM" text="Button" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>

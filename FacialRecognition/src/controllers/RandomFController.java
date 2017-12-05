@@ -12,25 +12,27 @@ public class RandomFController {
 
     }
 
+    //Methed is executting Python Script: rf.py (Random forest Implementation in Python):
+
     protected void startRF() {
         try {
             this.p = Runtime.getRuntime().exec("python PythonScript/rf.py");
-            BufferedReader stdInput = new BufferedReader(new
+            BufferedReader input = new BufferedReader(new
                     InputStreamReader(p.getInputStream()));
 
-            BufferedReader stdError = new BufferedReader(new
+            BufferedReader error = new BufferedReader(new
                     InputStreamReader(p.getErrorStream()));
 
             // read the output from the command
             String s = null;
-            System.out.println("Here is the standard output of the command:\n");
-            while ((s = stdInput.readLine()) != null) {
+            System.out.println("Command output:\n");
+            while ((s = input.readLine()) != null) {
                 System.out.println(s);
             }
 
             // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
+            System.out.println("Error of the command (if any):\n");
+            while ((s = error.readLine()) != null) {
                 System.out.println(s);
             }
         } catch (IOException e) {
